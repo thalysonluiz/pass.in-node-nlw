@@ -12,14 +12,14 @@ export async function getAttendeeBadge(app: FastifyInstance) {
         attendeeId: z.coerce.number().int(),
       }),
       response: {
-        200: {
+        200: z.object({
           badge: z.object({
             name: z.string(),
             email: z.string().email(),
             eventTitle: z.string(),
             checkInURL: z.string().url(),
           })
-        }
+        })
       },
     }
   }, async (request, reply) => {
